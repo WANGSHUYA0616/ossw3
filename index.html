@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>점심 메뉴 룰렛 (Lunch Roulette)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>🍽️ 점심 메뉴 룰렛</h1>
+      <p class="subtitle">오늘 점심 뭐 먹지? 고민될 땐 룰렛을 돌려보세요!</p>
+    </header>
+
+    <main class="main-content">
+      <!-- 룰렛 영역 -->
+      <section class="roulette-section">
+        <div class="roulette-wrapper">
+          <div class="roulette-pointer" aria-hidden="true">▼</div>
+          <canvas id="rouletteCanvas" width="420" height="420"></canvas>
+        </div>
+
+        <button id="spinBtn" class="btn-spin" disabled>
+          🎲 룰렛 돌리기!
+        </button>
+
+        <!-- 결과 표시 카드 -->
+        <div id="resultCard" class="result-card hidden">
+          <span class="result-label">🎉 오늘 점심 추천 메뉴 🎉</span>
+          <h2 id="resultMenu" class="result-menu"></h2>
+        </div>
+      </section>
+
+      <!-- 메뉴 관리 영역 -->
+      <section class="menu-manage-section">
+        <div class="card">
+          <h2>메뉴 관리 <span id="menuCountBadge" class="badge">0개</span></h2>
+          
+          <form id="menuForm" class="menu-form" onsubmit="return false;">
+            <input 
+              type="text" 
+              id="menuInput" 
+              placeholder="메뉴를 입력하세요 (예: 김치찌개)" 
+              maxlength="20"
+              autocomplete="off"
+            />
+            <button type="submit" id="addBtn" class="btn-add">추가</button>
+          </form>
+
+          <p id="inputError" class="input-error hidden"></p>
+
+          <div class="list-header">
+            <span>메뉴 목록</span>
+            <button id="clearAllBtn" class="btn-text-danger" type="button">전체 삭제</button>
+          </div>
+
+          <ul id="menuList" class="menu-list">
+            <!-- 메뉴 항목들이 동적으로 추가됨 -->
+          </ul>
+
+          <div id="emptyGuide" class="empty-guide">
+            <p>등록된 메뉴가 없습니다.<br>원하는 메뉴를 입력하고 추가해 보세요!</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>💡 메뉴는 브라우저에 자동 저장되어 새로고침해도 유지됩니다.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
